@@ -41,3 +41,4 @@ gem 'spring',        group: :development
 gem "gmaps4rails"
 gem "geocoder"
 
+gem 'better_errors'
