@@ -42,3 +42,4 @@ gem "gmaps4rails"
 gem "geocoder"
 
 gem 'better_errors'
+gem 'addressable'
