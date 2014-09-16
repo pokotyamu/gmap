@@ -1,3 +1,7 @@
+require 'net/http'
+require 'addressable/uri'
+require 'json'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -7,6 +11,7 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+    
   # GET /users/1
   # GET /users/1.json
   def show
@@ -25,6 +30,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    uri = Addressable::URI.parse("http://maps.google.com/maps/api/geocode/json?address=#{@user.address}&sensor=false")
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    @user.latitude = result["results"][0]["geometry"]["location"]["lat"]
+    @user.longitude = result["results"][0]["geometry"]["location"]["lng"]
 
     respond_to do |format|
       if @user.save
