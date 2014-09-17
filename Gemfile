@@ -44,5 +44,10 @@ gem 'spring',        group: :development
 gem "gmaps4rails"
 gem "geocoder"
 
-gem 'better_errors'
 gem 'addressable'
+
+## debug tools
+gem 'better_errors'
+group :development do
+  gem 'rails-footnotes'
+end
